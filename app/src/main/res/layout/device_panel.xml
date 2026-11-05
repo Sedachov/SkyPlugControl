@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp" app:strokeWidth="1dp" app:strokeColor="?attr/colorOutlineVariant">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="8dp">
+        <TextView android:id="@+id/panelTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center" android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:hint="MAC-адрес">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/macInput"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textCapCharacters|textNoSuggestions" android:singleLine="true"
+                android:textSize="12sp" android:saveEnabled="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Пусто — выбор из списка" android:textSize="11sp"
+            android:textColor="?android:attr/textColorSecondary" android:minHeight="32dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="Пароль-ключ" app:endIconMode="password_toggle">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/keyInput"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword" android:singleLine="true"
+                android:textSize="12sp" android:saveEnabled="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton android:id="@+id/connectButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:minHeight="56dp" android:paddingStart="4dp" android:paddingEnd="4dp"
+            android:layout_marginTop="8dp" android:text="Подключить" android:textSize="12sp" />
+        <TextView android:id="@+id/statusText" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minHeight="64dp" android:gravity="center"
+            android:text="Выберите устройство" android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/toggleButton"
+            android:layout_width="match_parent" android:layout_height="144dp"
+            android:enabled="false" android:insetTop="0dp" android:insetBottom="0dp"
+            android:text="—" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/white"
+            app:cornerRadius="72dp" app:backgroundTint="@color/state_unknown"
+            app:icon="@drawable/ic_plug" app:iconGravity="top" app:iconSize="40dp" app:iconTint="@color/white" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

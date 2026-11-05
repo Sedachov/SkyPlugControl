@@ -23,11 +23,29 @@ RSP-100S has been verified. Reports for other models are welcome.
 - Authenticates with an 8-byte key derived from a passphrase you type
   (SHA-256, first 8 bytes), persisted between launches. Leave it blank to use the
   built-in default key.
-- A single round **toggle button** that shows the current state (green = on,
-  red = off, grey = unknown/disconnected) and flips it on tap.
+- Two side-by-side device panels, each with its own saved MAC address, passphrase,
+  BLE connection, command queue, state polling and toggle button.
+- Choose a discovered device from a list or enter its MAC. The same device cannot
+  be assigned to both panels. Saved devices reconnect on launch.
+- Green = on, red = off, grey = unknown/disconnected. State is read from the device
+  after each connection; an old saved state is never treated as current.
+- Existing single-device settings migrate to the left panel on update.
 - HEX log of every frame sent/received, for debugging, with a "copy log" button.
 
-## Screenshot
+## Проверка двух устройств
+
+1. В левой панели укажите MAC первого устройства или оставьте поле пустым,
+   нажмите «Подключить» и выберите устройство в списке.
+2. Повторите справа для второго устройства. Если нужен ключ, используйте тот же,
+   с которым устройство уже работает; пустое поле означает прежний ключ по умолчанию.
+3. Дождитесь состояния ВКЛ/ВЫКЛ в обеих панелях. Проверьте каждую кнопку отдельно.
+4. Закройте и откройте приложение: оба адреса сохраняются и подключения
+   восстанавливаются. Отключение одного устройства не должно мешать другому.
+5. При ошибке подключения скопируйте журнал: [1] — левая панель, [2] — правая.
+
+Реальное управление двумя устройствами требует проверки на телефоне с Bluetooth.
+
+## Screenshot (original single-device version)
 
 <!-- Put a screenshot at docs/screenshot.png and it will show up here -->
 ![SkyPlug Control](docs/screenshot.png)
@@ -78,7 +96,18 @@ traffic here is unencrypted, so the security is consumer-grade.
 
 ## Build
 
-### Option A — Android Studio (easiest)
+### GitHub Actions
+
+Open **Actions → Build APK → Run workflow**, select the branch, and run it.
+The workflow compiles the debug APK and runs Android lint. Download
+**SkyPlugControl-APK** from the completed run’s **Artifacts** section, unzip it,
+and install `app-debug.apk`. Pushes to `main` and `codex/two-devices` also build automatically.
+
+Debug builds on fresh GitHub runners can use different signing keys. If Android
+reports a signature conflict, record both MAC addresses and passphrases before
+uninstalling the old app and installing the new APK; uninstalling clears settings.
+
+### Option A — Android Studio
 1. `File > Open` → select the `SkyPlugControl` folder.
 2. Android Studio pulls Gradle 8.7, AGP 8.5.2, and SDK 34 automatically.
 3. Connect a phone (USB debugging) → **Run ▶**.
@@ -114,3 +143,4 @@ hardware you own. Use at your own risk.
 ## License
 
 MIT
+
